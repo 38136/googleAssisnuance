@@ -1,6 +1,10 @@
 'use strict';
 
 const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
+var express = require('express');
+var expressApp = express();
+var bodyParser = require('body-parser');
+var port = process.env.PORT || 8080;
 console.log('will see');
 
 exports.nuancetry = (req, res) => {
@@ -38,3 +42,15 @@ exports.nuancetry = (req, res) => {
     //add more intents to the map
     app.handleRequest(actionMap);
 }
+expressApp.set('port', port);
+expressApp.use(bodyParser.json({
+    type: 'application/json'
+}));
+
+expressApp.post('/', function(request,respond)
+{
+    
+});
+
+expressApp.listen(port);
+console.log('Parrot Assistant listening on port %s', port);
