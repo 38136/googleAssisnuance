@@ -1,68 +1,38 @@
 'use strict';
 
-process.env.DEBUG = 'actions-on-google:*';
-var http = require('http');
-var ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
-var express = require('express');
-var expressApp = express();
-var bodyParser = require('body-parser');
-var port = process.env.PORT || 8080;
-var SCHEDULE_QUERY = 'your_domain_goes_here.SCHEDULE_QUERY';
+const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 
-console.log(nuancetry.SCHEDULE_QUERY);
-
-
-function handlePost(request, response) {
-        console.log('Polly want a cracker');
-    
-    var app, actions;
-
-    // Javascript assistant API 
-
-    app = new ActionsSdkApp({
-        request: request,
-        response: response
+exports.nuancetry= (req, res) => {
+    const app = new ActionsSdkApp({
+        request: req,
+        response: res
     });
 
-    // Our intent to handler mapping
+    // Create functions to handle requests here
 
-    actions = new Map();
-    actions.set(SCHEDULE_QUERY, queryIntent);
-    actions.set(app.StandardIntents.MAIN, mainIntent);
-    actions.set(app.StandardIntents.TEXT, textIntent);
-    app.handleRequest(actions);
-
-    // Handles the main intent
-
-    function mainIntent(app) {
-        app.ask('copy cat');
-        console.log('copy cat');
-    }
-
-    // Handles the query intent - i.e. user has specified a route at minimum
-
-    function queryIntent(app) {}
-
-    // Handles the text intent
-
-    function textIntent(app) {
-        var text;
-
-        text = app.getRawInput() || '';
-        app.ask(text);
-    }
 }
+console.log('will see');
+console.log(exports.nuancetry);
 
-// start the web server
+function mainIntent(app) {
+    let inputPrompt = app.buildInputPrompt(false,
+        'Hi! Say something, and I\'ll repeat it');
+    app.ask(inputPrompt);
+}
+{/*function mainIntent (app) {
+  let inputPrompt = app.buildInputPrompt(false, 'Hi, I\'m Do It All. You can ask to do this or that. What would you like to do?');
+  app.ask(inputPrompt);
+}*/}
+function respond(app) {
+    let inputPrompt = app.buildInputPrompt(false,
+        'Hi! Say something, and I\'ll repeat it.');
+    app.ask(inputPrompt);
+}
+let actionMap = new Map();
+actionMap.set(app.StandardIntents.MAIN, mainIntent);
+actionMap.set(app.StandardIntents.TEXT, respond);
 
-expressApp.set('port', port);
-expressApp.use(bodyParser.json({
-    type: 'application/json'
-}));
+//add more intents to the map
 
-expressApp.post('/', handlePost);
 
-expressApp.listen(port);
-console.log('Parrot Assistant listening on port %s', port);
-
-module.exports = expressApp;
+app.handleRequest(actionMap);
