@@ -1,0 +1,19 @@
+{
+  "name": "nuancetry",
+  "version": "1.0.0",
+  "description": "copy cat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anitha Senthilnathan",
+  "license": "ISC",
+  "dependencies": {
+    "actions-on-google": "^1.0.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "iconv-lite": "^0.4.15",
+    "inquirer": "^3.0.1",
+    "request": "^2.79.0"
+  }
+}
