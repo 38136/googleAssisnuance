@@ -2,7 +2,7 @@
 
 const ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 
-exports. < insertCloudFunctionName >= (req, res) => {
+exports.nuancetry= (req, res) => {
     const app = new ActionsSdkApp({
         request: req,
         response: res
@@ -11,6 +11,8 @@ exports. < insertCloudFunctionName >= (req, res) => {
     // Create functions to handle requests here
 
 }
+console.log('will see');
+console.log(exports.nuancetry);
 
 function mainIntent(app) {
     let inputPrompt = app.buildInputPrompt(false,

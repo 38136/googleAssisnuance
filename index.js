@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
 var SCHEDULE_QUERY = 'your_domain_goes_here.SCHEDULE_QUERY';
 
+console.log(nuancetry.SCHEDULE_QUERY);
+
 
 function handlePost(request, response) {
         console.log('Polly want a cracker');
@@ -33,8 +35,8 @@ function handlePost(request, response) {
     // Handles the main intent
 
     function mainIntent(app) {
-        app.ask('Polly want a cracker');
-        console.log('Polly want a cracker');
+        app.ask('copy cat');
+        console.log('copy cat');
     }
 
     // Handles the query intent - i.e. user has specified a route at minimum
