@@ -1,6 +1,6 @@
 'use strict';
 
-//process.env.DEBUG = 'actions-on-google:*';
+process.env.DEBUG = 'actions-on-google:*';
 var http = require('http');
 var ActionsSdkApp = require('actions-on-google').ActionsSdkApp;
 var express = require('express');
@@ -9,7 +9,10 @@ var bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
 var SCHEDULE_QUERY = 'your_domain_goes_here.SCHEDULE_QUERY';
 
+
 function handlePost(request, response) {
+        console.log('Polly want a cracker');
+    
     var app, actions;
 
     // Javascript assistant API 
@@ -31,6 +34,7 @@ function handlePost(request, response) {
 
     function mainIntent(app) {
         app.ask('Polly want a cracker');
+        console.log('Polly want a cracker');
     }
 
     // Handles the query intent - i.e. user has specified a route at minimum
