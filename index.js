@@ -44,4 +44,4 @@ expressApp.get('/', function(request,respond)
     respond.send("succes");
 });
 
-expressApp.listen(3000);
+expressApp.listen(process.env.PORT || 3000);
